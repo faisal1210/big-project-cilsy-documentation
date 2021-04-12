@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-prod
+  namespace: production
+  labels:
+    app: mongo-prod
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mongo-prod
+    spec:
+      containers:
+        - name: mongo-prod
+          image: mongo:latest
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - mountPath: '/data/db'
+              name: mongo-storage
+      volumes:
+        - name: mongo-storage
+          persistentVolumeClaim:
+            claimName: pvc-mongo-prod
+  selector:
+    matchLabels:
+      app: mongo-prod

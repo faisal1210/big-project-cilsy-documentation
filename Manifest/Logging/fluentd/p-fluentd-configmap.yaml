@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluentd-config
+  namespace: logging
+  labels:
+    component: fluentd
+data:
+  elasticsearch_username: elastic
+  elasticsearch_password: 5gHzZreQo5wxkQ5r6l74

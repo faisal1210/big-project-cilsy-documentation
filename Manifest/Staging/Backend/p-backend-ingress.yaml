@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: backend-dev-ingress
+  namespace: staging
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  ## Service Location n Characters
+  - host: backend-dev.ical.host
+    http:
+      paths:
+      - backend:
+          serviceName: backend-dev-service
+          servicePort: 4000
+        path: /
